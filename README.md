@@ -24,8 +24,8 @@ Folder `node_modules` tidak disertakan di GitHub. Dependency dapat dipasang kemb
 
 ## GitHub Pages
 
-Di repository GitHub, buka **Settings → Pages**. Pilih **Deploy from a branch**, pilih branch `main` dan folder `/(root)`, lalu simpan. File root `index.html` akan meneruskan pengunjung ke `frontend/index.html`.
+Workflow `.github/workflows/jekyll-gh-pages.yml` yang sudah ada di repository menerbitkan isi branch `main` sebagai situs statis. Pastikan **Settings → Pages → Build and deployment** menggunakan **GitHub Actions**. Setelah workflow berhasil di tab **Actions**, situs tersedia di `https://<username>.github.io/<nama-repository>/`; `index.html` root meneruskan pengunjung ke `frontend/index.html`.
 
 GitHub Pages hanya menjalankan frontend statis, bukan Express. Karena itu halaman Pages memakai Supabase JS dan publishable key langsung dari browser. Publishable key memang dirancang untuk frontend; keamanan data harus diatur melalui Row Level Security (RLS) di Supabase. Jangan masukkan service-role key ke file frontend.
 
-Setelah mengubah file, lakukan commit dan push ke branch yang dipilih pada pengaturan Pages, lalu tunggu deployment selesai di tab **Actions**.
+Pastikan folder `frontend/` dan file proyek lainnya sudah diunggah ke branch `main`. GitHub tidak menerbitkan file yang hanya ada di komputer lokal. Setelah itu tunggu workflow **Deploy Jekyll with GitHub Pages** selesai di tab **Actions**.
